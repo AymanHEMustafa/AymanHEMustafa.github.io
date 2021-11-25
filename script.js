@@ -11,7 +11,7 @@ const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
 const background=document.querySelector('body');
 // Song titles
-const songs = ['Humood  Be Curious', 'Sin', 'Expo 2020'];
+const songs = [ 'Sin','Humood  Be Curious', 'Expo 2020'];
 
 function liveBackground(x){
 
@@ -23,7 +23,7 @@ function liveBackground(x){
 	}
 
 // Keep track of song
-let songIndex = 2;
+let songIndex = 0;
 
 // Initially load song details into DOM
 loadSong(songs[songIndex]);
