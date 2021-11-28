@@ -17,18 +17,17 @@ const songs = [ 'Sin','Humood  Be Curious', 'Expo 2020'];
 // Keep track of song
 let songIndex = 0;
 
-// Initially load song details into DOM
-loadSong(songs[songIndex]);
-
 // Update song details
  loadSong=(song) =>{
   title.innerText = song;
   audio.src = `music/${song}.mp3`;
   cover.src = `images/${song}.jpg`;
 }
+// Initially load song details into DOM
+loadSong(songs[songIndex]);
 
 // Play song
-function playSong() {
+playSong=() =>{
   musicContainer.classList.add('play');
   playBtn.querySelector('i.fas').classList.remove('fa-play');
   playBtn.querySelector('i.fas').classList.add('fa-pause');
