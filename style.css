@@ -61,7 +61,6 @@ body {
   bottom: 0;
   left: 0;
   animation: rotate 8s linear infinite;
-
   animation-play-state: paused;
 }
 
@@ -143,35 +142,4 @@ body {
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
-}
-
-.callnowwhat {
-  position: fixed;
-  bottom: 50%;
-
-  padding: 5px 0;
-  width: 112px;
-  text-align: center;
-  line-height: 18px;
-  z-index: 9999;
-  font-size: 18px;
-  border: none;
-  color: #fff;
-  box-shadow: 0 0 0 0 #00e676;
-  border-radius: 22px;
-
-  background-color: #00e676;
-  -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-}
-.text-center {
-  text-align: center;
-}
-
-@keyframes pulse {
-  to {
-    box-shadow: 0 0 0 23px rgba(232, 76, 61, 0);
-  }
 }

@@ -1,26 +1,18 @@
+
 const musicContainer = document.getElementById('music-container');
+const audio = document.getElementById('audio');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
-const audio = document.getElementById('audio');
 const progress = document.getElementById('progress');
 const progressContainer = document.getElementById('progress-container');
 const title = document.getElementById('title');
 const cover = document.getElementById('cover');
 const currTime = document.querySelector('#currTime');
 const durTime = document.querySelector('#durTime');
-const background=document.querySelector('body');
-// Song titles
+
+//array of songs names
 const songs = [ 'Sin','Humood  Be Curious', 'Expo 2020'];
-
-function liveBackground(x){
-
-	background.style.backgroundImage=`linear-gradient(
-		${2*x}deg,
-	    rgb(180, 151, 204) 23.8%,
-    rgb(138, 33, 124) 92%`
-		
-	}
 
 // Keep track of song
 let songIndex = 0;
@@ -29,7 +21,7 @@ let songIndex = 0;
 loadSong(songs[songIndex]);
 
 // Update song details
-function loadSong(song) {
+ loadSong=(song) =>{
   title.innerText = song;
   audio.src = `music/${song}.mp3`;
   cover.src = `images/${song}.jpg`;
@@ -42,24 +34,18 @@ function loadSong(song) {
   playBtn.querySelector('i.fas').classList.add('fa-pause');
   audio.play();
 }
-
 // Pause song
 pauseSong=()=> {
   musicContainer.classList.remove('play');
   playBtn.querySelector('i.fas').classList.add('fa-play');
   playBtn.querySelector('i.fas').classList.remove('fa-pause');
-
   audio.pause();
 }
-
 // Previous song
 prevSong=()=> {
   songIndex--;
-
-  if (songIndex < 0) {
-    songIndex = songs.length - 1;
-  }
-
+  //if songIndex < 0 {songIndex = songs.length - 1}
+  songIndex < 0 && (songIndex = songs.length - 1)
   loadSong(songs[songIndex]);
 
   playSong();
@@ -68,46 +54,36 @@ prevSong=()=> {
 // Next song
 function nextSong() {
   songIndex++;
-
-  if (songIndex > songs.length - 1) {
-    songIndex = 0;
-  }
-
+  (songIndex > songs.length - 1)&& (songIndex = 0)
   loadSong(songs[songIndex]);
-
   playSong();
 }
-
 // Update progress bar
-function updateProgress(e) {
+updateProgress=(e)=> {
   const { duration, currentTime } = e.srcElement;
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 }
-
 // Set progress bar
-function setProgress(e) {
+ setProgress=(e)=> {
   const width = this.clientWidth;
   const clickX = e.offsetX;
   const duration = audio.duration;
-
   audio.currentTime = (clickX / width) * duration;
 }
-var change=50;
+
 //get duration & currentTime for Time of song
-function DurTime (e) {
+ DurTime= (e) =>{
 	
 	const {duration,currentTime} = e.srcElement;
 	var sec;
 	var sec_d;
 	
-
 	// define minutes currentTime
 	let min = (currentTime==null)? 0:
 	 Math.floor(currentTime/60);
 	 min = min <10 ? '0'+min:min;
 
-	 
 	// define seconds currentTime
 	function get_sec (x) {
 		if(Math.floor(x) >= 60){
@@ -161,29 +137,27 @@ function DurTime (e) {
 		
 };
 
-// Event listeners
+// Add Event listeners
 playBtn.addEventListener('click', () => {
   const isPlaying = musicContainer.classList.contains('play');
 
   if (isPlaying) {
-    pauseSong();
-  } else {
-    playSong();
-  }
+	  pauseSong();
+	} else {
+		playSong();
+	}
+// other way ,, insted of if statement 
+// isPlaying ? pauseSong():playSongs()
 });
 
 // Change song
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
-
 // Time/song update
 audio.addEventListener('timeupdate', updateProgress);
-
 // Click on progress bar
 progressContainer.addEventListener('click', setProgress);
-
 // Song ends
 audio.addEventListener('ended', nextSong);
-
 // Time of song
 audio.addEventListener('timeupdate',DurTime);
