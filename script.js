@@ -28,7 +28,7 @@ loadSong(songs[songIndex]);
 }
 
 // Play song
- playSong=()=> {
+ const playSong=()=> {
   musicContainer.classList.add('play');
   playBtn.querySelector('i.fas').classList.remove('fa-play');
   playBtn.querySelector('i.fas').classList.add('fa-pause');
@@ -44,7 +44,10 @@ pauseSong=()=> {
 // Previous song
 prevSong=()=> {
   songIndex--;
-  if (songIndex < 0) {songIndex = songs.length - 1}
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
   loadSong(songs[songIndex]);
   playSong();
 }
@@ -52,8 +55,9 @@ prevSong=()=> {
 // Next song
 function nextSong() {
   songIndex++;
-  if(songIndex > songs.length - 1)
-  {songIndex = 0}
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
   loadSong(songs[songIndex]);
   playSong();
 }
